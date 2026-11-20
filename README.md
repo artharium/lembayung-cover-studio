@@ -6,8 +6,8 @@
 
 **Lembayung Cover Studio** — turn your photos and a caption into GTA 6-style
 multi-panel poster cover art, in your browser, fully offline. Your photos never
-leave your machine. Export the cover as a PNG in 1080 × 1080, 1080 × 1350 or
-1920 × 1080 — or all three in one click.
+leave your machine. Export the cover as a PNG in 1080 × 1080, 1080 × 1350,
+1920 × 1080 or story 1080 × 1920 — or all four in one click.
 
 ## Run it
 
@@ -24,15 +24,21 @@ artwork or fonts are used anywhere.
 ## How it works
 
 1. **Add photos** — drop, paste, upload, or use the 10 sample photos.
-2. **Caption** — title, script subtitle and tagline, in striped-gradient,
-   hollow-outline or painted-flat lettering.
-3. **Export PNG** — one size, or all three at once.
+   Every photo carries a face-aware focus point, so smart crops keep faces
+   in frame; the Fit whole photo button shows an uploaded picture in full.
+2. **Caption** — title, script subtitle and tagline, in banded-gradient,
+   hollow-outline, halftone-dot or painted-flat lettering, over a solid
+   tagline band.
+3. **Export PNG** — one size, or all four at once.
 
-The cover engine (`app/src/cover.js`) draws 6 layouts (hero mosaic,
-hero + three, six grid, diagonal trio, seven mosaic, full bleed), 8 colour
-grades (Lembayung teal-gold is the default), a Poster Ink painted look,
-per-panel crop / zoom / flip / swap with face focus points, role tags with a
-location-and-time line, a quote bar, billing block, seal and barcode.
+The cover engine (`app/src/cover.js`) draws 7 layouts (hero mosaic,
+hero + three, six grid, diagonal trio, seven mosaic, full bleed, and the
+new centre-hero with its tall middle panel), 8 warm colour grades
+(Lembayung dusk is the default), poster-art ink bands on every panel, a
+Poster Ink painted look that preserves skin tones, per-panel crop / zoom /
+flip / swap with face focus points, bold name-only role tags, a five-star
+quote bar, tagline band, billing block, seal and barcode. Undo and redo
+cover every change.
 
 ## Screenshots
 
