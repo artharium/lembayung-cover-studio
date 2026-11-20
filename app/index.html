@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Lembayung Cover Studio: turn any photo into GTA-style multi-panel cover art, fully offline in your browser. Upload any photo with face-aware smart crops, pick from 7 layouts and 8 sunset grades, letter a banded, outline or halftone title, and export a PNG in 1080x1080, 1080x1350, 1920x1080 or story 1080x1920 — with undo and redo. No uploads, no account.">
 <title>Lembayung Cover Studio — your photos as GTA-style cover art</title>
+<link rel="icon" href="./favicon.ico">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -48,12 +50,13 @@
     <section class="card" id="card-caption">
       <h2><i>2</i>Caption</h2>
       <label>Title <input id="caption-title" type="text" maxlength="24" value="LEMBAYUNG"></label>
-      <label>Script <input id="caption-script" type="text" maxlength="40" value="dusk never waits"></label>
-      <label>Tagline <input id="caption-tagline" type="text" maxlength="60" value="FIVE FRIENDS • ONE COAST • NO WAY BACK"></label>
+      <label>Script <input id="caption-script" type="text" maxlength="40" value="sunsets are for stealing"></label>
+      <label>Tagline <input id="caption-tagline" type="text" maxlength="60" value="CHASE THE LIGHT • OUTRUN THE NIGHT"></label>
       <label>Title style
         <select id="title-style-select">
           <option value="striped">Striped gradient</option>
           <option value="outline">Hollow outline</option>
+          <option value="halftone">Halftone dots</option>
           <option value="painted">Painted flat</option>
         </select>
       </label>
@@ -64,6 +67,7 @@
       <button type="button" data-size="1080x1080">1:1&nbsp; 1080 × 1080</button>
       <button type="button" data-size="1080x1350">4:5&nbsp; 1080 × 1350</button>
       <button type="button" data-size="1920x1080" class="active">16:9&nbsp; 1920 × 1080</button>
+      <button type="button" data-size="1080x1920">9:16&nbsp; 1080 × 1920</button>
     </div>
     <canvas id="cover-canvas" class="cover-canvas panel-hero-popout" width="1920" height="1080" aria-label="Live cover preview"></canvas>
     <p class="hint">Drag to pan · wheel or corner handles to zoom · Shift-drag onto a panel to swap · click a panel to select it</p>
@@ -75,12 +79,13 @@
       <button type="button" class="export-size" data-export="1080x1080">1080 × 1080 PNG <span>Square post · 1:1</span></button>
       <button type="button" class="export-size" data-export="1080x1350">1080 × 1350 PNG <span>Portrait post · 4:5</span></button>
       <button type="button" class="export-size" data-export="1920x1080">1920 × 1080 PNG <span>Wide banner · 16:9</span></button>
-      <button type="button" id="export-all-three" class="primary">⇩ Export all three</button>
+      <button type="button" class="export-size" data-export="1080x1920">1080 × 1920 PNG <span>Story · 9:16</span></button>
+      <button type="button" id="export-all-four" class="primary">⇩ Export all four</button>
     </section>
     <section class="card" id="card-panel">
-      <h2 id="panel-heading">Panel 1 of 5</h2>
+      <h2 id="panel-heading">Panel 1 of 7</h2>
       <p id="panel-caption" class="panel-caption">Hero panel · smart crop · face in frame</p>
-      <label>Zoom <input id="panel-zoom" type="range" min="1" max="2.5" step="0.05" value="1"></label>
+      <label>Zoom <input id="panel-zoom" type="range" min="0.5" max="2.5" step="0.05" value="1"></label>
       <div class="row">
         <button type="button" id="photo-prev-button">◀ Photo</button>
         <button type="button" id="photo-next-button">Photo ▶</button>
@@ -90,6 +95,9 @@
         <button type="button" id="flip-button">⇄ Flip</button>
         <button type="button" id="swap-button">⇄ Swap</button>
         <button type="button" id="face-button">◉ Face</button>
+      </div>
+      <div class="row">
+        <button type="button" id="fit-photo-button">⤢ Fit whole photo</button>
       </div>
       <label>Name tag <input id="panel-tag-input" type="text" maxlength="24" value="THE DRIVER"></label>
     </section>
