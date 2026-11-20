@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lembayung Cover Studio — your photos as GTA-style cover art</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-sun" aria-hidden="true"></span><b>LEMBAYUNG</b><small>cover studio</small></div>
+  <nav class="steps" aria-label="Steps">
+    <button type="button" class="step" data-step="photos"><i>1</i>Add photos</button>
+    <span class="step-link">smart crops →</span>
+    <button type="button" class="step" data-step="caption"><i>2</i>Caption</button>
+    <span class="step-link">→</span>
+    <button type="button" class="step" data-step="export"><i>3</i>Export PNG</button>
+  </nav>
+  <div class="top-actions">
+    <button type="button" id="undo-button" title="Undo (Ctrl+Z)">↶ Undo</button>
+    <button type="button" id="redo-button" title="Redo (Ctrl+Shift+Z)">↷ Redo</button>
+    <button type="button" id="help-button" title="Keyboard shortcuts">?</button>
+  </div>
+</header>
+<main class="studio">
+  <aside class="side-left" aria-label="Photos, layout and caption">
+    <section class="card" id="card-photos">
+      <h2><i>1</i>Add photos</h2>
+      <div class="drop-zone" id="drop-zone">
+        <label class="primary file-button">+ Add photos<input id="photo-input" type="file" accept="image/*" multiple hidden></label>
+        <span>or drop · paste</span>
+      </div>
+      <div class="photo-tray" id="photo-tray" aria-label="Photo tray"></div>
+      <div class="row">
+        <button type="button" id="auto-layout-button">⟳ Auto layout</button>
+        <button type="button" id="surprise-button">✦ Surprise me</button>
+      </div>
+    </section>
+    <section class="card" id="card-layout">
+      <h2>Layout</h2>
+      <div class="layout-thumbnails" id="layout-thumbnails"></div>
+    </section>
+    <section class="card" id="card-grade">
+      <h2>Grade</h2>
+      <div class="grade-chips" id="grade-chips"></div>
+      <label class="check"><input type="checkbox" id="poster-ink-toggle"> Poster Ink — painted flat-colour look</label>
+    </section>
+    <section class="card" id="card-caption">
+      <h2><i>2</i>Caption</h2>
+      <label>Title <input id="caption-title" type="text" maxlength="24" value="LEMBAYUNG"></label>
+      <label>Script <input id="caption-script" type="text" maxlength="40" value="dusk never waits"></label>
+      <label>Tagline <input id="caption-tagline" type="text" maxlength="60" value="FIVE FRIENDS • ONE COAST • NO WAY BACK"></label>
+      <label>Title style
+        <select id="title-style-select">
+          <option value="striped">Striped gradient</option>
+          <option value="outline">Hollow outline</option>
+          <option value="painted">Painted flat</option>
+        </select>
+      </label>
+    </section>
+  </aside>
+  <section class="preview-column">
+    <div class="size-tabs" id="size-tabs" role="tablist" aria-label="Cover size">
+      <button type="button" data-size="1080x1080">1:1&nbsp; 1080 × 1080</button>
+      <button type="button" data-size="1080x1350">4:5&nbsp; 1080 × 1350</button>
+      <button type="button" data-size="1920x1080" class="active">16:9&nbsp; 1920 × 1080</button>
+    </div>
+    <canvas id="cover-canvas" class="cover-canvas panel-hero-popout" width="1920" height="1080" aria-label="Live cover preview"></canvas>
+    <p class="hint">Drag to pan · wheel or corner handles to zoom · Shift-drag onto a panel to swap · click a panel to select it</p>
+    <p id="status-text" role="status"></p>
+  </section>
+  <aside class="side-right" aria-label="Export and panel controls">
+    <section class="card" id="card-export">
+      <h2><i>3</i>Export PNG</h2>
+      <button type="button" class="export-size" data-export="1080x1080">1080 × 1080 PNG <span>Square post · 1:1</span></button>
+      <button type="button" class="export-size" data-export="1080x1350">1080 × 1350 PNG <span>Portrait post · 4:5</span></button>
+      <button type="button" class="export-size" data-export="1920x1080">1920 × 1080 PNG <span>Wide banner · 16:9</span></button>
+      <button type="button" id="export-all-three" class="primary">⇩ Export all three</button>
+    </section>
+    <section class="card" id="card-panel">
+      <h2 id="panel-heading">Panel 1 of 5</h2>
+      <p id="panel-caption" class="panel-caption">Hero panel · smart crop · face in frame</p>
+      <label>Zoom <input id="panel-zoom" type="range" min="1" max="2.5" step="0.05" value="1"></label>
+      <div class="row">
+        <button type="button" id="photo-prev-button">◀ Photo</button>
+        <button type="button" id="photo-next-button">Photo ▶</button>
+      </div>
+      <div class="row">
+        <button type="button" id="reset-crop-button">Reset</button>
+        <button type="button" id="flip-button">⇄ Flip</button>
+        <button type="button" id="swap-button">⇄ Swap</button>
+        <button type="button" id="face-button">◉ Face</button>
+      </div>
+      <label>Name tag <input id="panel-tag-input" type="text" maxlength="24" value="THE DRIVER"></label>
+    </section>
+    <section class="card" id="card-look">
+      <h2>Look &amp; Title</h2>
+      <label>Paint <input id="look-paint" type="range" min="0" max="100" value="0"></label>
+      <label>Grade <input id="look-grade" type="range" min="0" max="100" value="60"></label>
+      <label>Halftone <input id="look-halftone" type="range" min="0" max="100" value="20"></label>
+      <label>Grain <input id="look-grain" type="range" min="0" max="100" value="25"></label>
+      <label>Glow <input id="look-glow" type="range" min="0" max="100" value="26"></label>
+    </section>
+  </aside>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
